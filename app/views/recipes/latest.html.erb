@@ -1,0 +1,74 @@
+<% num = @recipes.length-1 %>
+
+			<article class="container">
+				
+				<div class="col-md-8">
+				<h1><%= @recipes[num].title %>
+					<% if user_signed_in? %>
+					<small>
+					
+					<%= link_to like_recipe_path(@recipes[num], type: "up"), method: "post" do %>
+						<span class ="glyphicon glyphicon-chevron-up"></span>
+						<% end %>
+						<%= link_to like_recipe_path(@recipes[num], type: "down"), method: "post" do %>
+						<span class ="glyphicon glyphicon-chevron-down"></span>
+						<% end %>
+					
+					</small>
+					<% end %>
+				</h1>
+				<p><%= @recipes[num].description %></p>
+				<%= link_to @recipes[num] do %>
+					<em>Get this Recipe</em> <span class="glyphicon glyphicon-play"></span>
+				<% end %>
+				</div>
+				<div class="col-md-4">
+				<%= image_tag @recipes[num].image_url(:feature).to_s, :class=>"img-responsive", :id => "feature_image"%>
+				</div>
+				<%= link_to new_recipe_path  do%>
+					<span class="glyphicon glyphicon-th-large"></span>New Recipe
+				<% end %>
+			</article>
+			</header>
+			<% count = 0%>
+			<% @recipes.reverse[1..@recipes.length-1].each do |recipe|%>
+			<% if count.even?%>
+				<% klass = "even"%>
+			<% else %>
+				<% klass = "odd" %>
+			<% end %>
+			<%= link_to recipe do %>
+			
+			<section class='<%= recipe.category%> <%= klass %>'>
+				<article class="container">
+					<div class="col-md-2">
+						
+						<%= image_tag recipe.image_url(:thumb).to_s, :class=>"img-responsive pull-left img_list"%>
+						
+					</div>
+					
+					<h1>
+						<%= recipe.title %>
+					</h1>
+					<h4 class="pull-right">Skill Level: 
+						<% if recipe.difficulty == "hard"%>
+							<span class="glyphicon glyphicon-minus"></span><span class="glyphicon glyphicon-minus"></span><span class="glyphicon glyphicon-minus"></span>
+						<% elsif recipe.difficulty == "moderate"%>
+							<span class="glyphicon glyphicon-minus"></span><span class="glyphicon glyphicon-minus"></span>
+						<% else %>
+							<span class="glyphicon glyphicon-minus"></span>
+						<% end %>
+					</h2>
+					<p><%= recipe.description[0..75] %>...</p>
+					
+						
+					
+				</article>
+			</section>
+			<% end %>
+			<% count += 1%>
+			<% end %>
+			
+			
+		
+	</div>

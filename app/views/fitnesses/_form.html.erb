@@ -1,0 +1,24 @@
+<%= simple_form_for(@fitness) do |f| %>
+  <% if @fitness.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fitness.errors.count, "error") %> prohibited this fitness from being saved:</h2>
+
+      <ul>
+      <% @fitness.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :title, :label => false, input_html: { class: "form-control" }, :placeholder => "title"  %>
+  </div>
+  <div class="field">
+  	<%= tinymce :alternate%>
+    <%= f.input :body, input_html: {class: "form-control tinymce",id: "unique", rows:"8"}, :placeholder =>"Short and Sweet Description" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

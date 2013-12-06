@@ -1,0 +1,27 @@
+<%= simple_form_for [@recipe, @step] do |f| %>
+  <% if @step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+      <% @step.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div class="input-group">
+		<span class="input-group-addon">#</span>
+		<%= f.input :step_no, :label => false, collection: 1..20, input_html: { class: "form-control" }, prompt: "Select the Step Number"%>
+	</div><br />
+	<div class="form">
+		<%= f.input :description, :label => false, input_html: {class: "form-control", rows:"8"}, :placeholder =>"Description" %><br /><br />
+		<span><%= f.input :remote_image_url, :label => false, input_html: { class: "form-control" }, :placeholder =>"Image URL"  %>	
+		<%= f.file_field :image%></span>
+		
+			
+	</div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

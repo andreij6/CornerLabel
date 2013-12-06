@@ -1,0 +1,46 @@
+<% difficulty = ['easy', 'moderate', 'hard']%>
+<% category = ['chicken','beef','poultry','seafood']%>
+<%= simple_form_for(@recipe, html: {multipart: true})  do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  	<div class="input-group">
+	  <span class="input-group-addon">#</span>
+  		<%= f.input :title, :label => false, input_html: { class: "form-control" }, :placeholder =>"Title"%>
+	</div>
+	<div class="form">
+		<%= tinymce :alternate%>
+  		<%= f.input :description, input_html: {class: "form-control tinymce",id: "unique", rows:"8"}, :placeholder =>"Short and Sweet Description"%>
+  	<div class="col-md-6">
+  		<%= f.input :category, :collection => category, :default => category[0], input_html: { class: "form-control" } %>
+  		<%= f.input :difficulty, :collection => difficulty, :default => difficulty[0], input_html: { class: "form-control" } %>
+  	</div>
+  	<div class="col-md-6">
+  	<%= f.input :prep_time, :label => false, input_html: { class: "form-control" }, :placeholder =>"Prep Time" %>
+  	<%= f.input :missed_time, :label => false, input_html: { class: "form-control" }, :placeholder =>"Missed Time" %>
+  	<%= f.input :total_time, :label => false, input_html: { class: "form-control" }, :placeholder =>"Total Time" %>
+  	</div>
+  	<%= f.input :tip , input_html: {class: "form-control", rows:"8"}, :placeholder =>"How to make the "%>
+  	<div class="col-md-6">
+  	<%= f.input :video , :label => false, input_html: { class: "form-control" }, :placeholder =>"Video" %>
+	</div>
+	<div class="col-md-6">
+	<%= f.file_field :image%>
+	</div>
+	<div class="col-md-12">
+	<%= f.input :remote_image_url, :label => false, input_html: { class: "form-control" }, :placeholder =>"Image URL" %>
+	</div>
+	</div>
+  <div class="actions">
+    <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
+  
+<% end %>

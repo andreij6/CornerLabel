@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @tech.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @tech.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_tech_path(@tech) %> |
+<%= link_to 'Back', teches_path %>

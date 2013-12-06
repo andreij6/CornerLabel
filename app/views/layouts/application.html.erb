@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Corner Label</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans|Montserrat+Alternates|Montserrat+Subrayada' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<section class="col-md-2">
+	
+		<ul class="nav nav-pills nav-stacked">
+		  <li class="active"><%= link_to 'Home', root_path%></li>
+		  <li><%= link_to 'Fitness', fitnesses_path%></li>
+		  <li><%= link_to 'Recipes', recipes_path%></li>
+		  <li><%= link_to 'Current Events', current_events_path%></li>
+		  <li><%= link_to 'Shopping', deals_path%></li>
+		</ul>
+		<img data-src="holder.js/100%x180" alt="..."><br />
+	</section>
+	<section class="col-md-9">
+
+		<nav class="navbar" role="navigation">
+			  <!-- Brand and toggle get grouped for better mobile display -->
+			  <div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			      <span class="sr-only">Toggle navigation</span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			    </button>
+			    <%= link_to 'Corner Label',root_path,  :class=> "navbar-brand"%>
+			    <%= form_tag recipes_path, :class=>"navbar-form navbar-left", :method => 'get' do%>
+				  <div class="form-group">
+				    <%= text_field_tag :search, params[:search], :class=>"form-control", :placeholder=>"Search" %>
+				  </div>
+				  <%= submit_tag "Search", :class=>"btn btn-default", :name => nil%>
+				<% end %>
+			  </div>
+				
+			  <!-- Collect the nav links, forms, and other content for toggling -->
+			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    <ul class="nav navbar-nav navbar-right">
+			      <li><%= link_to 'Top Recipes', recipes_path%></li>
+			      <li><%= link_to 'Latest', recipes_latest_path%></li>	  
+			    </ul>
+			  </div><!-- /.navbar-collapse -->
+			</nav>
+	</section>
+		
+		<div class="col-md-7">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
+			<%= yield %>
+		</div>
+	<aside class="col-md-2">
+		<h1>Advertisements</h1>
+		 <img data-src="holder.js/100%x180" alt="..."><br />
+		 <img data-src="holder.js/100%x180" alt="..."><br />
+		 <img data-src="holder.js/100%x180" alt="..."><br />
+		 <img data-src="holder.js/100%x180" alt="..."><br />
+	</aside>
+	
+	<footer>
+			<div class="col-xs-8 foot8">
+				<h4>Corner Label &copy; <%= Time.now.year %></h4>
+			</div>
+			<div class="col-xs-4 foot4">
+				
+			</div>
+		</footer>
+
+</body>
+
+</html>

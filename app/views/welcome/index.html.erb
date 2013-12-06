@@ -1,0 +1,68 @@
+
+  
+
+	<section class="row">
+		<div class="col-xs-6">
+			<h1>Recipes <span class="badge"><%= @recipes.count %></span></h1>
+			<h2><%= @recipes[-1].title %></h2>
+			<p><%= @recipes[-1].description %></p>
+		</div>
+		<div class="col-xs-6 picture">
+			<%= link_to recipes_path do%>
+			<h3>More Recipes
+				
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</h3>
+			<% end %>
+			
+		</div>
+	</section>
+	
+	<section class="row">
+		<div class="col-xs-6">
+			<h1>Fitness<span class="badge"><%= @fits.count %></span></h1>
+			<h2>Fitness</h2>
+			<p>Body</p>
+		</div>
+		<div class="col-xs-6 picture">
+			<%= link_to fitnesses_path do%>
+			<h3>Fitness
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</h3>
+			<% end %>
+			
+		</div>
+	</section>
+	
+	<section class="row one ">
+		<div class="col-xs-6">
+			<h1>Tech<span class="badge"><%= @techs.count %></span></h1>
+			<h2>Title</h2>
+			<p>Body</p>
+		</div>
+		<div class="col-xs-6 picture">
+			<%= link_to teches_path do%>
+			<h3>Tech
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</h3>
+			<% end %>
+			
+		</div>
+	</section>
+	
+	<section class="row one ">
+		<div class="col-xs-6">
+			<h1>Current Events <span class="badge"><%= @events.count %></span></h1>
+			<h2>Title</h2>
+			<p>Body</p>
+		</div>
+		<div class="col-xs-6 picture">
+			<%= link_to current_events_path do%>
+			<h3>Current Events
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</h3>
+			<% end %>
+			
+		</div>
+	</section>
+

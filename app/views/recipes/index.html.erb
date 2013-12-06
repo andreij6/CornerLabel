@@ -1,0 +1,62 @@
+	<% r = Random.new %>	
+	<% num = r.rand(0..@recipes.length-1) %>
+	<% while @recipes[num].reputation_for(:likes).to_i < 0 %>
+		<% num = r.rand(0..@recipes.length-1) %>
+	<% end %>
+		
+		<header>
+			<article class="container">
+				
+				<div class="col-md-8">
+				<h1><%= @recipes[num].title %> </h1><hr />
+				<p><%= markdown(@recipes[num].description).html_safe %></p>
+				<%= link_to @recipes[num] do %>
+					<em>Get this Recipe</em> <span class="glyphicon glyphicon-play"></span>
+				<% end %>
+				</div>
+				<div class="col-md-4">
+					<%= image_tag @recipes[num].image_url(:feature).to_s, :class=>"img-responsive", :id => "feature_image"%>				<!-- Picture -->
+					
+				</div>
+				<%= link_to new_recipe_path  do%>
+					<span class="glyphicon glyphicon-th-large"></span>New Recipe
+				<% end %>
+			</article>
+		</header>
+			
+			<% @recipes.each do |recipe|%>
+			
+			<%= link_to recipe do %>
+				<section class='<%= recipe.category%> even'>
+					<article class="container">
+						<div class="col-md-2">
+							
+							<%= image_tag recipe.image_url(:thumb).to_s, :class=>"img-responsive pull-left img_list"%>
+							
+							
+						</div>
+						
+						<h1>
+							<%= recipe.title %> 
+							<span class="badge"><%= recipe.reputation_for(:likes).to_i %> Likes</span>
+						</h1>
+						
+						<p><%= recipe.description.html_safe %></p>
+						
+						<% if user_signed_in? %>
+							<%= link_to like_recipe_path(recipe, type: "up"), method: "post" do %>
+								<span class ="glyphicon glyphicon-chevron-up"></span>
+							<% end %>
+							<%= link_to like_recipe_path(recipe, type: "down"), method: "post" do %>
+							<span class ="glyphicon glyphicon-chevron-down"></span>
+							<% end %>
+						<% end %>
+					</article>
+			</section>
+			<% end %>
+			<% end %>
+			
+			
+		
+	
+	
