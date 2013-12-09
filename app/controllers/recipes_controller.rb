@@ -36,10 +36,16 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-    
 
     respond_to do |format|
       format.html # show.html.erb
+      format.pdf do
+        pdf = RecipePdf.new(@recipe)
+        send_data pdf.render, filename: "recipe #{@recipe.title}.pdf",
+                              type: "application/pdf",
+                            disposition: "inline"
+                              
+      end
       format.json { render json: @recipe }
     end
   end
