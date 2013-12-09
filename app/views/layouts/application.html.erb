@@ -5,7 +5,13 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans|Montserrat+Alternates|Montserrat+Subrayada' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
+  <script src="http://platform.fatsecret.com/js?key=e70941d624cf445c836c98932317dd7a"></script>
   <%= csrf_meta_tags %>
+  <script> 
+			fatsecret.setContainer("my_container"); 
+			fatsecret.setCanvas("foods.search"); 
+			fatsecret.variables.navOptions = 1 + 2; 
+ </script>
 </head>
 <body>
 	<section class="col-md-2">
@@ -17,8 +23,9 @@
 		  <li><%= link_to 'Current Events', current_events_path%></li>
 		  <li><%= link_to 'Shopping', deals_path%></li>
 		</ul>
-		<img data-src="holder.js/100%x180" alt="..."><br />
+		
 	</section>
+	
 	<section class="col-md-9">
 
 		<nav class="navbar" role="navigation">
@@ -49,11 +56,12 @@
 			</nav>
 	</section>
 		
-		<div class="col-md-7">
+		<div class="col-md-7 col-md-offset-2">
 			<p class="notice"><%= notice %></p>
 			<p class="alert"><%= alert %></p>
 			<%= yield %>
 		</div>
+	
 	<aside class="col-md-2">
 		<h1>Advertisements</h1>
 		 <img data-src="holder.js/100%x180" alt="..."><br />
@@ -61,6 +69,7 @@
 		 <img data-src="holder.js/100%x180" alt="..."><br />
 		 <img data-src="holder.js/100%x180" alt="..."><br />
 	</aside>
+	
 	
 	<footer>
 			<div class="col-xs-8 foot8">
